@@ -14,7 +14,7 @@ app.get('/health', (req, res) => {
 });
 
 // Proxy all requests to Binance
-app.use('/*', async (req, res) => {
+app.all('*', async (req, res) => {
   try {
     const binanceUrl = `https://api.binance.com${req.originalUrl}`;
     
@@ -53,4 +53,5 @@ app.use('/*', async (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Binance proxy running on port ${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/health`);
+
 });
